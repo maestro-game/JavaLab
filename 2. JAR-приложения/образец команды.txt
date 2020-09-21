@@ -1,0 +1,1 @@
+java -jar MultiLoader.jar -threads=2 -urls=https://i.pinimg.com/originals/70/40/8c/70408cd6287660691d8ae788c1e64f1e.jpg,https://i.pinimg.com/736x/67/59/b5/6759b58ae01d90955dd4dc573ccf9fb6.jpg,https://i.pinimg.com/736x/3a/f2/44/3af244c7503909743baa110cbbc89119.jpg,https://i.pinimg.com/736x/53/24/c7/5324c742f5bccf4adfd0f3e9a364eccc--white-bunnies-white-rabbits.jpg
