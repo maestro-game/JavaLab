@@ -28,21 +28,25 @@ public class Program {
 
         ExecutorService pool = Executors.newFixedThreadPool(args.threads);
         args.urls.forEach(url -> {
-            try{
-                BufferedInputStream input = new BufferedInputStream((new URL(url)).openStream());
-                FileOutputStream output = new FileOutputStream(url.substring(url.lastIndexOf('/') + 1));
-                input.transferTo(output);
+            pool.submit(() -> {
+                        try {
+                            BufferedInputStream input = new BufferedInputStream((new URL(url)).openStream());
+                            FileOutputStream output = new FileOutputStream(url.substring(url.lastIndexOf('/') + 1));
+                            input.transferTo(output);
 
-                input.close();
-                output.close();
-                System.out.println("Downloaded img from " + url);
-            } catch(FileNotFoundException e) {
-                System.out.println(e.getMessage());
-            } catch (MalformedURLException e) {
-                System.out.println(e.getMessage());
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
+                            input.close();
+                            output.close();
+                            System.out.println("Downloaded img from " + url);
+                        } catch (FileNotFoundException e) {
+                            System.out.println(e.getMessage());
+                        } catch (MalformedURLException e) {
+                            System.out.println(e.getMessage());
+                        } catch (IOException e) {
+                            System.out.println(e.getMessage());
+                        }
+                    }
+            );
         });
+		pool.shutdown();
     }
 }
